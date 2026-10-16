@@ -5,27 +5,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bibi Plans ♡</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
 
 :root {
-  --pink: #f5c5d5;
-  --pink-light: #fff0f5;
-  --green: #dcebd9;
-  --blue: #dce9f8;
-  --purple: #e8def7;
-  --ink: #514751;
+  --page-bg: #fff8fa;
   --paper: #fffdfc;
+  --card-bg: #fffdfc;
+  --ink: #514751;
+  --muted: #948590;
   --line: #f0e6eb;
+  --accent: #d99bb5;
+  --accent-hover: #c783a0;
+  --accent-light: #fff0f5;
+  --accent-dark: #bd7994;
+  --field-bg: #ffffff;
+  --welcome: linear-gradient(120deg, #ffeaf1, #f6edff, #eaf4ff);
+  --empty-bg: #fffafb;
+  --shadow: #75506b08;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: #fff8fa;
+  background: var(--page-bg);
   color: var(--ink);
   font-family: 'DM Sans', sans-serif;
+  transition: background .2s, color .2s;
 }
 
 button, input, select, textarea { font: inherit; }
@@ -48,32 +56,34 @@ header {
 
 .logo {
   font: 700 29px 'Quicksand', sans-serif;
-  color: #bd7994;
+  color: var(--accent-dark);
   letter-spacing: -1px;
 }
 
-.logo span { color: #d9a4b7; }
+.logo span { color: var(--accent); }
 
 .tagline {
   font-size: 12px;
-  color: #9d8995;
+  color: var(--muted);
   margin-top: 4px;
 }
 
 .palette {
   display: flex;
-  gap: 7px;
+  gap: 9px;
 }
 
 .swatch {
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   border: 2px solid white;
-  box-shadow: 0 0 0 1px #e8dce2;
+  box-shadow: 0 0 0 1px var(--line);
+  padding: 0;
 }
 
-.swatch:focus { outline: 2px solid #aa7e97; }
+.swatch:hover { transform: scale(1.1); }
+.swatch:focus { outline: 2px solid var(--accent-dark); }
 
 nav {
   display: flex;
@@ -83,21 +93,24 @@ nav {
   padding: 14px 6%;
   overflow-x: auto;
   background: var(--paper);
+  border-bottom: 1px solid var(--line);
 }
 
 nav button {
   flex-shrink: 0;
   border: 0;
   background: transparent;
-  color: #897b86;
+  color: var(--muted);
   padding: 10px 14px;
   border-radius: 12px;
   font-size: 13px;
 }
 
+nav button:hover { background: var(--accent-light); }
+
 nav button.active {
-  background: var(--pink-light);
-  color: #a85f80;
+  background: var(--accent-light);
+  color: var(--accent-dark);
   font-weight: 700;
 }
 
@@ -117,13 +130,14 @@ h1 {
 
 h2 { font-size: 21px; margin-top: 0; }
 
-.muted { color: #948590; font-size: 14px; }
+.muted { color: var(--muted); font-size: 14px; }
 
 .welcome {
-  background: linear-gradient(120deg, #ffeaf1, #f6edff, #eaf4ff);
+  background: var(--welcome);
   padding: 30px;
   border-radius: 23px;
   margin-bottom: 22px;
+  transition: background .2s;
 }
 
 .welcome p { margin-bottom: 0; line-height: 1.7; }
@@ -136,23 +150,24 @@ h2 { font-size: 21px; margin-top: 0; }
 }
 
 .card, .panel {
-  background: var(--paper);
+  background: var(--card-bg);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 20px;
-  box-shadow: 0 4px 16px #75506b08;
+  box-shadow: 0 4px 16px var(--shadow);
+  transition: background .2s, border-color .2s;
 }
 
 .card {
   min-height: 125px;
   cursor: pointer;
-  transition: transform .15s;
+  transition: transform .15s, background .2s;
 }
 
 .card:hover { transform: translateY(-2px); }
 .card .emoji { font-size: 25px; }
 .card h3 { margin: 10px 0 5px; font-size: 17px; }
-.card p { margin: 0; font-size: 13px; color: #9b8b96; }
+.card p { margin: 0; font-size: 13px; color: var(--muted); }
 
 .section-heading {
   display: flex;
@@ -163,22 +178,23 @@ h2 { font-size: 21px; margin-top: 0; }
 }
 
 .primary {
-  background: #d99bb5;
+  background: var(--accent);
   color: white;
   border: 0;
   border-radius: 12px;
   padding: 11px 16px;
   font-weight: 700;
+  transition: background .2s;
 }
 
-.primary:hover { background: #c783a0; }
+.primary:hover { background: var(--accent-hover); }
 
 .secondary {
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: white;
+  background: var(--card-bg);
   padding: 8px 11px;
-  color: #857581;
+  color: var(--ink);
 }
 
 form {
@@ -196,8 +212,8 @@ label {
 
 input, select, textarea {
   width: 100%;
-  border: 1px solid #eadfe6;
-  background: white;
+  border: 1px solid var(--line);
+  background: var(--field-bg);
   color: var(--ink);
   border-radius: 11px;
   padding: 11px 12px;
@@ -205,8 +221,8 @@ input, select, textarea {
 }
 
 input:focus, select:focus, textarea:focus {
-  border-color: #d99bb5;
-  box-shadow: 0 0 0 3px #f9e6ee;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
 }
 
 .full { grid-column: 1 / -1; }
@@ -220,38 +236,39 @@ input:focus, select:focus, textarea:focus {
   padding: 15px;
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: white;
+  background: var(--card-bg);
 }
 
 .task input[type="checkbox"] {
   width: 18px;
   height: 18px;
   margin-top: 2px;
-  accent-color: #c783a0;
+  accent-color: var(--accent-dark);
 }
 
 .task-info { flex: 1; min-width: 0; }
 .task-title { font-weight: 700; overflow-wrap: anywhere; }
-.task-details { font-size: 12px; color: #968793; margin-top: 5px; }
+.task-details { font-size: 12px; color: var(--muted); margin-top: 5px; }
+
 .task.completed .task-title {
   text-decoration: line-through;
-  color: #ad9faa;
+  color: var(--muted);
 }
 
 .delete {
   border: 0;
   background: transparent;
-  color: #b68b9e;
+  color: var(--accent-dark);
   padding: 4px;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .empty {
   text-align: center;
   padding: 28px 15px;
-  color: #a3929e;
-  background: #fffafb;
-  border: 1px dashed #e9dbe3;
+  color: var(--muted);
+  background: var(--empty-bg);
+  border: 1px dashed var(--line);
   border-radius: 14px;
 }
 
@@ -259,7 +276,7 @@ input:focus, select:focus, textarea:focus {
 
 footer {
   text-align: center;
-  color: #aa98a4;
+  color: var(--muted);
   font-size: 12px;
   padding: 25px;
 }
@@ -286,10 +303,17 @@ footer {
       <div class="logo">bibi plans <span>♡</span></div>
       <div class="tagline">a little space for your big ideas</div>
     </div>
+
     <div class="palette" aria-label="Change theme">
-      <button class="swatch" style="background:#f5c5d5" aria-label="Pink theme" onclick="setTheme('pink')"></button>
-      <button class="swatch" style="background:#dcebd9" aria-label="Green theme" onclick="setTheme('green')"></button>
-      <button class="swatch" style="background:#dce9f8" aria-label="Blue theme" onclick="setTheme('blue')"></button>
+      <button class="swatch" style="background:#f5c5d5"
+        aria-label="Pink theme" title="Pink theme"
+        onclick="setTheme('pink')"></button>
+      <button class="swatch" style="background:#dcebd9"
+        aria-label="Green theme" title="Green theme"
+        onclick="setTheme('green')"></button>
+      <button class="swatch" style="background:#dce9f8"
+        aria-label="Blue theme" title="Blue theme"
+        onclick="setTheme('blue')"></button>
     </div>
   </div>
 </header>
@@ -317,26 +341,31 @@ footer {
         <h3>Homework</h3>
         <p id="homeworkCount">Your assignments</p>
       </div>
+
       <div class="card" onclick="showPage('Tests')">
         <div class="emoji">📝</div>
         <h3>Tests & quizzes</h3>
         <p id="testsCount">Stay prepared</p>
       </div>
+
       <div class="card" onclick="showPage('Projects')">
         <div class="emoji">🎨</div>
         <h3>Projects</h3>
         <p id="projectsCount">Big ideas start here</p>
       </div>
+
       <div class="card" onclick="showPage('Clubs')">
         <div class="emoji">🌷</div>
         <h3>Clubs</h3>
         <p id="clubsCount">Activities and meetings</p>
       </div>
+
       <div class="card" onclick="showPage('Things Due')">
         <div class="emoji">📌</div>
         <h3>Things due</h3>
         <p id="thingsCount">Important deadlines</p>
       </div>
+
       <div class="card" onclick="showPage('Make-Up Tests')">
         <div class="emoji">🌼</div>
         <h3>Make-up tests</h3>
@@ -348,6 +377,7 @@ footer {
       <h2>Your upcoming plans ✨</h2>
       <button class="primary" onclick="showPage('Homework')">+ Add a task</button>
     </div>
+
     <div id="upcoming" class="task-list"></div>
   </section>
 
@@ -359,23 +389,30 @@ footer {
 
     <div class="panel">
       <h2>Add something new ✿</h2>
+
       <form id="taskForm">
         <div class="full">
           <label for="taskName">What do you need to do?</label>
-          <input id="taskName" maxlength="120" placeholder="e.g. Finish science worksheet" required>
+          <input id="taskName" maxlength="120"
+            placeholder="e.g. Finish science worksheet" required>
         </div>
+
         <div>
           <label for="taskDate">Due date</label>
           <input id="taskDate" type="date">
         </div>
+
         <div>
           <label for="taskSubject">Class or activity</label>
           <input id="taskSubject" maxlength="80" placeholder="e.g. Science">
         </div>
+
         <div class="full">
           <label for="taskNotes">Extra notes (optional)</label>
-          <textarea id="taskNotes" rows="2" maxlength="300" placeholder="Pages, reminders, what to bring..."></textarea>
+          <textarea id="taskNotes" rows="2" maxlength="300"
+            placeholder="Pages, reminders, what to bring..."></textarea>
         </div>
+
         <div class="full">
           <button class="primary" type="submit">Save to my planner ♡</button>
         </div>
@@ -390,6 +427,7 @@ footer {
         <option value="completed">Finished</option>
       </select>
     </div>
+
     <div id="taskList" class="task-list"></div>
   </section>
 </main>
@@ -411,7 +449,76 @@ const descriptions = {
   'Make-Up Tests': 'Keep track of tests you need to make up.'
 };
 
+const themes = {
+  pink: {
+    page: '#fff8fa',
+    paper: '#fffdfc',
+    ink: '#514751',
+    muted: '#948590',
+    line: '#f0e6eb',
+    accent: '#d99bb5',
+    hover: '#c783a0',
+    light: '#fff0f5',
+    dark: '#bd7994',
+    field: '#ffffff',
+    welcome: 'linear-gradient(120deg, #ffeaf1, #f6edff, #eaf4ff)',
+    empty: '#fffafb'
+  },
+  green: {
+    page: '#f2f8ef',
+    paper: '#fcfff9',
+    ink: '#3e5140',
+    muted: '#7d927e',
+    line: '#dce8d7',
+    accent: '#8bb58a',
+    hover: '#709b72',
+    light: '#e5f1e1',
+    dark: '#547c55',
+    field: '#ffffff',
+    welcome: 'linear-gradient(120deg, #dcefd6, #edf6e8, #e0efe3)',
+    empty: '#f8fcf6'
+  },
+  blue: {
+    page: '#f2f7fd',
+    paper: '#fcfdff',
+    ink: '#45536a',
+    muted: '#8290a7',
+    line: '#dce7f5',
+    accent: '#8eacd8',
+    hover: '#7295c7',
+    light: '#e7f0fc',
+    dark: '#587baa',
+    field: '#ffffff',
+    welcome: 'linear-gradient(120deg, #e0ecfb, #edf1ff, #e1f5fa)',
+    empty: '#f8fbff'
+  }
+};
+
+function setTheme(theme) {
+  const chosen = themes[theme] || themes.pink;
+  const root = document.documentElement;
+
+  root.style.setProperty('--page-bg', chosen.page);
+  root.style.setProperty('--paper', chosen.paper);
+  root.style.setProperty('--card-bg', chosen.paper);
+  root.style.setProperty('--ink', chosen.ink);
+  root.style.setProperty('--muted', chosen.muted);
+  root.style.setProperty('--line', chosen.line);
+  root.style.setProperty('--accent', chosen.accent);
+  root.style.setProperty('--accent-hover', chosen.hover);
+  root.style.setProperty('--accent-light', chosen.light);
+  root.style.setProperty('--accent-dark', chosen.dark);
+  root.style.setProperty('--field-bg', chosen.field);
+  root.style.setProperty('--welcome', chosen.welcome);
+  root.style.setProperty('--empty-bg', chosen.empty);
+
+  try {
+    localStorage.setItem('bibiPlansTheme', theme);
+  } catch (error) {}
+}
+
 let tasks = [];
+
 try {
   tasks = JSON.parse(localStorage.getItem('bibiPlansTasks') || '[]');
   if (!Array.isArray(tasks)) tasks = [];
@@ -429,21 +536,9 @@ function saveTasks() {
   }
 }
 
-function setTheme(theme) {
-  const colors = {
-    pink: ['#f5c5d5', '#fff0f5', '#bd7994'],
-    green: ['#dcebd9', '#eff7ed', '#729b78'],
-    blue: ['#dce9f8', '#eef5ff', '#7193c3']
-  };
-  const chosen = colors[theme] || colors.pink;
-  document.documentElement.style.setProperty('--pink', chosen[0]);
-  document.documentElement.style.setProperty('--pink-light', chosen[1]);
-  document.querySelector('.logo').style.color = chosen[2];
-  try { localStorage.setItem('bibiPlansTheme', theme); } catch (error) {}
-}
-
 function showPage(page) {
   currentPage = page;
+
   document.getElementById('homePage').classList.toggle('hidden', page !== 'Home');
   document.getElementById('plannerPage').classList.toggle('hidden', page === 'Home');
 
@@ -456,6 +551,7 @@ function showPage(page) {
     document.getElementById('pageDescription').textContent = descriptions[page];
     document.getElementById('listHeading').textContent = 'My ' + page.toLowerCase();
   }
+
   renderTasks();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -467,6 +563,7 @@ document.getElementById('navigation').addEventListener('click', event => {
 
 document.getElementById('taskForm').addEventListener('submit', event => {
   event.preventDefault();
+
   const title = document.getElementById('taskName').value.trim();
   if (!title) return;
 
@@ -495,6 +592,7 @@ function makeTaskElement(task) {
   checkbox.type = 'checkbox';
   checkbox.checked = task.completed;
   checkbox.setAttribute('aria-label', 'Mark task complete');
+
   checkbox.addEventListener('change', () => {
     task.completed = checkbox.checked;
     saveTasks();
@@ -511,7 +609,13 @@ function makeTaskElement(task) {
 
   const details = document.createElement('div');
   details.className = 'task-details';
-  const parts = [task.category, task.subject, task.date ? 'Due ' + task.date : ''];
+
+  const parts = [
+    task.category,
+    task.subject,
+    task.date ? 'Due ' + task.date : ''
+  ];
+
   details.textContent = parts.filter(Boolean).join(' · ');
   info.appendChild(details);
 
@@ -526,6 +630,7 @@ function makeTaskElement(task) {
   del.className = 'delete';
   del.textContent = '×';
   del.setAttribute('aria-label', 'Delete task');
+
   del.addEventListener('click', () => {
     if (confirm('Delete this task?')) {
       tasks = tasks.filter(item => item.id !== task.id);
@@ -540,6 +645,7 @@ function makeTaskElement(task) {
 
 function renderList(container, items, emptyMessage) {
   container.replaceChildren();
+
   if (!items.length) {
     const empty = document.createElement('div');
     empty.className = 'empty';
@@ -547,21 +653,29 @@ function renderList(container, items, emptyMessage) {
     container.appendChild(empty);
     return;
   }
-  items.forEach(task => container.appendChild(makeTaskElement(task)));
+
+  items.forEach(task => {
+    container.appendChild(makeTaskElement(task));
+  });
 }
 
 function renderTasks() {
   const filter = document.getElementById('taskFilter').value;
-  const filtered = tasks.filter(task =>
-    currentPage === 'Home' || task.category === currentPage
-  ).filter(task =>
-    filter === 'all' ||
-    (filter === 'active' && !task.completed) ||
-    (filter === 'completed' && task.completed)
-  );
+
+  const filtered = tasks
+    .filter(task => currentPage === 'Home' || task.category === currentPage)
+    .filter(task =>
+      filter === 'all' ||
+      (filter === 'active' && !task.completed) ||
+      (filter === 'completed' && task.completed)
+    );
 
   if (currentPage !== 'Home') {
-    renderList(document.getElementById('taskList'), filtered, 'Nothing here yet! Add your first task above. ♡');
+    renderList(
+      document.getElementById('taskList'),
+      filtered,
+      'Nothing here yet! Add your first task above. ♡'
+    );
   }
 
   const upcoming = tasks
@@ -569,7 +683,11 @@ function renderTasks() {
     .sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999'))
     .slice(0, 5);
 
-  renderList(document.getElementById('upcoming'), upcoming, 'Your planner is all clear! Add a task to get started. ♡');
+  renderList(
+    document.getElementById('upcoming'),
+    upcoming,
+    'Your planner is all clear! Add a task to get started. ♡'
+  );
 
   const ids = {
     'Homework': 'homeworkCount',
@@ -581,17 +699,22 @@ function renderTasks() {
   };
 
   categories.forEach(category => {
-    const count = tasks.filter(task => task.category === category && !task.completed).length;
+    const count = tasks.filter(
+      task => task.category === category && !task.completed
+    ).length;
+
     document.getElementById(ids[category]).textContent =
       count + (count === 1 ? ' unfinished task' : ' unfinished tasks');
   });
 }
 
+let savedTheme = 'pink';
+
 try {
-  setTheme(localStorage.getItem('bibiPlansTheme') || 'pink');
-} catch (error) {
-  setTheme('pink');
-}
+  savedTheme = localStorage.getItem('bibiPlansTheme') || 'pink';
+} catch (error) {}
+
+setTheme(savedTheme);
 renderTasks();
 </script>
 </body>
