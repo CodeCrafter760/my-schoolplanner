@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Little Planner</title>
+  <style>
+    body {
+      background: #fff4fa;
+      color: #594653;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #d66b9b;
+    }
+
+    button {
+      background: #f7c9df;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Little Planner 🌷</h1>
+  <p>Plan your school life, one step at a time!</p>
+
+  <button onclick="showMessage('Homework')">Homework</button>
+  <button onclick="showMessage('Tests')">Tests</button>
+  <button onclick="showMessage('Projects')">Projects</button>
+
+  <p id="message">Choose a section to get started!</p>
+
+  <script>
+    function showMessage(section) {
+      document.getElementById("message").textContent =
+        "Welcome to your " + section + " section!";
+    }
+  </script>
+</body>
+</html>
