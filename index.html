@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bibi Plans ♡</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #fff5f9;
+      color: #594653;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background: #f7d5e4;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      color: #b84e7d;
+      margin: 0 0 8px;
+      font-size: 36px;
+    }
+
+    header p {
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 16px;
+      background: white;
+    }
+
+    nav button {
+      border: none;
+      border-radius: 20px;
+      padding: 11px 16px;
+      background: #fce6ef;
+      color: #874765;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: #d66b9b;
+      color: white;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 12px #e8cbd8;
+    }
+
+    h2 {
+      color: #b84e7d;
+    }
+
+    input {
+      padding: 12px;
+      border: 1px solid #e6bdcf;
+      border-radius: 10px;
+      font-size: 15px;
+      margin: 4px 0;
+      max-width: 100%;
+    }
+
+    .add-button {
+      background: #d66b9b;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .task {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f5e3eb;
+      overflow-wrap: anywhere;
+    }
+
+    .task span {
+      flex: 1;
+    }
+
+    .task.done span {
+      text-decoration: line-through;
+      color: #9b8992;
+    }
+
+    .delete-button {
+      border: none;
+      background: #fff0f5;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #98788a;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>bibi plans ♡</h1>
+    <p>your little corner to get organized 🌷</p>
+  </header>
+
+  <nav id="navigation">
+    <button class="active" data-page="Home">Home</button>
+    <button data-page="Homework">Homework</button>
+    <button data-page="Tests">Tests</button>
+    <button data-page="Projects">Projects</button>
+    <button data-page="Clubs">Clubs</button>
+    <button data-page="Things Due">Things Due</button>
+    <button data-page="Make-Up Tests">Make-Up Tests</button>
+  </nav>
+
+  <main>
+    <section class="card">
+      <h2 id="page-title">Welcome to your planner! ♡</h2>
+      <p id="page-description">
+        A little planning makes a big difference.
+        Choose a tab above to get started!
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 id="form-title">Add a task ✿</h2>
+
+      <form id="task-form">
+        <input id="task-name" type="text"
+          placeholder="What do you need to do?" required>
+
+        <input id="task-date" type="date"
+          aria-label="Due date">
+
+        <button class="add-button" type="submit">
+          + Add task
+        </button>
+      </form>
+
+      <p id="task-count">0 tasks</p>
+      <div id="task-list"></div>
+    </section>
+  </main>
+
+  <footer>made with ♡ and a little bit of code</footer>
+
+  <script>
+    let currentPage = "Home";
+
+    let tasks = JSON.parse(
+      localStorage.getItem("bibiTasks") || "[]"
+    );
+
+    const title = document.getElementById("page-title");
+    const description =
+      document.getElementById("page-description");
+    const formTitle = document.getElementById("form-title");
+    const taskForm = document.getElementById("task-form");
+    const taskName = document.getElementById("task-name");
+    const taskDate = document.getElementById("task-date");
+    const taskList = document.getElementById("task-list");
+    const taskCount = document.getElementById("task-count");
+
+    function saveTasks() {
+      localStorage.setItem("bibiTasks", JSON.stringify(tasks));
+    }
+
+    function showPage(page) {
+      currentPage = page;
+
+      document.querySelectorAll("nav button").forEach(button => {
+        button.classList.toggle(
+          "active", button.dataset.page === page
+        );
+      });
+
+      title.textContent = page === "Home"
+        ? "Welcome to your planner! ♡"
+        : page + " ✿";
+
+      description.textContent = page === "Home"
+        ? "A little planning makes a big difference."
+        : "Keep your " + page.toLowerCase() +
+          " organized in one place.";
+
+      formTitle.textContent = page === "Home"
+        ? "Add a task ✿"
+        : "Add to " + page + " ✿";
+
+      renderTasks();
+    }
+
+    function renderTasks() {
+      taskList.replaceChildren();
+
+      const visibleTasks = tasks.filter(task =>
+        currentPage === "Home" || task.section === currentPage
+      );
+
+      taskCount.textContent = visibleTasks.length +
+        (visibleTasks.length === 1 ? " task" : " tasks");
+
+      visibleTasks.forEach(task => {
+        const row = document.createElement("div");
+        row.className = "task" + (task.done ? " done" : "");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.done;
+        checkbox.setAttribute("aria-label", "Complete task");
+
+        checkbox.addEventListener("change", () => {
+          task.done = checkbox.checked;
+          saveTasks();
+          renderTasks();
+        });
+
+        const text = document.createElement("span");
+        text.textContent = task.name +
+          (task.date ? " — due " + task.date : "");
+
+        const remove = document.createElement("button");
+        remove.className = "delete-button";
+        remove.textContent = "Delete";
+        remove.addEventListener("click", () => {
+          tasks = tasks.filter(item => item.id !== task.id);
+          saveTasks();
+          renderTasks();
+        });
+
+        row.append(checkbox, text, remove);
+        taskList.append(row);
+      });
+    }
+
+    document.getElementById("navigation")
+      .addEventListener("click", event => {
+        const button = event.target.closest("button[data-page]");
+        if (button) showPage(button.dataset.page);
+      });
+
+    taskForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const name = taskName.value.trim();
+      if (!name) return;
+
+      tasks.push({
+        id: Date.now() + Math.random(),
+        name: name,
+        date: taskDate.value,
+        section: currentPage,
+        done: false
+      });
+
+      saveTasks();
+      taskForm.reset();
+      renderTasks();
+    });
+
+    showPage("Home");
+  </script>
+</body>
+</html>
