@@ -3,21 +3,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fce7f3">
 <title>Bibi Plans ♡</title>
+<meta name="description" content="Bibi Plans is your personal school planner. Organize homework, tests, projects, clubs, and more.">
+
+<!-- Custom Bibi Plans browser icon: heart and bow -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23fce7f3'/%3E%3Cpath d='M50 78 19 48C-1 22 29 8 50 30 71 8 101 22 81 48Z' fill='%23f9a8d4' stroke='%23be4b86' stroke-width='4'/%3E%3Cpath d='M50 58C32 40 27 59 44 63L50 58 56 63C73 59 68 40 50 58Z' fill='%23fff' stroke='%23be4b86' stroke-width='3'/%3E%3C/svg%3E">
+
 <style>
 :root {
-  --accent: #d88db3;
-  --accent-dark: #a95481;
-  --page: #fff7fb;
+  --accent: #e58ab4;
+  --accent-dark: #a83f76;
+  --page: #fff8fc;
   --surface: #ffffff;
-  --soft: #f9e8f1;
-  --text: #493b47;
-  --muted: #897987;
-  --border: #f0dce7;
-  --shadow: 0 8px 28px rgba(100, 60, 90, .07);
+  --soft: #fbeaf3;
+  --text: #443449;
+  --muted: #88778a;
+  --border: #f0d9e7;
+  --shadow: 0 6px 22px rgba(100, 55, 90, .07);
 }
+
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   background: var(--page);
@@ -25,156 +33,379 @@ body {
   font-family: "Trebuchet MS", Arial, sans-serif;
   transition: background .2s, color .2s;
 }
+
 button, input, textarea, select { font: inherit; }
 button { cursor: pointer; }
-button:focus-visible, input:focus-visible, textarea:focus-visible,
-select:focus-visible { outline: 2px solid var(--accent-dark); outline-offset: 2px; }
+button:focus-visible, input:focus-visible,
+textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+
 header {
-  padding: 23px 6%;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 18px;
   flex-wrap: wrap;
-}
-.brand { font-size: 27px; font-weight: 900; letter-spacing: -.8px; }
-.brand span { color: var(--accent-dark); }
-.tagline { color: var(--muted); font-size: 13px; margin-top: 5px; }
-.header-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.color-label { font-size: 13px; color: var(--muted); }
-input[type="color"] {
-  width: 43px; height: 39px; border: 2px solid var(--border);
-  border-radius: 12px; background: var(--surface); padding: 3px;
-  cursor: pointer;
-}
-.small-button, .primary, .secondary, .nav-button {
-  border: 0; border-radius: 12px; padding: 11px 15px;
-  transition: transform .15s, opacity .15s;
-}
-.small-button:hover, .primary:hover, .secondary:hover, .nav-button:hover {
-  transform: translateY(-1px);
-}
-.small-button { background: var(--soft); color: var(--text); }
-nav {
-  display: flex; gap: 8px; padding: 14px 6%;
-  overflow-x: auto; background: var(--surface);
+  padding: 22px 5%;
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
 }
-.nav-button {
-  white-space: nowrap; background: transparent; color: var(--muted);
+
+.brand {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -.7px;
+}
+
+.brand span { color: var(--accent-dark); }
+
+.tagline {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.color-label { color: var(--muted); font-size: 13px; }
+
+input[type="color"] {
+  width: 45px;
+  height: 40px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.small-button, .primary, .secondary, .nav-button {
+  padding: 11px 15px;
+  border-radius: 12px;
   border: 1px solid transparent;
 }
+
+.small-button, .secondary {
+  background: var(--soft);
+  color: var(--accent-dark);
+}
+
+.primary {
+  background: var(--accent-dark);
+  color: white;
+  font-weight: 800;
+}
+
+nav {
+  display: flex;
+  gap: 7px;
+  padding: 13px 5%;
+  overflow-x: auto;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-button {
+  white-space: nowrap;
+  background: transparent;
+  color: var(--muted);
+}
+
 .nav-button.active {
-  background: var(--soft); color: var(--accent-dark);
-  border-color: var(--border); font-weight: 800;
+  background: var(--soft);
+  color: var(--accent-dark);
+  border-color: var(--border);
+  font-weight: 800;
 }
-main { width: min(1120px, 92%); margin: 30px auto 60px; }
+
+main {
+  width: min(1120px, 92%);
+  margin: 28px auto 55px;
+}
+
 .welcome {
-  background: var(--soft); border: 1px solid var(--border);
-  border-radius: 24px; padding: 30px; margin-bottom: 24px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 28px;
+  margin-bottom: 22px;
 }
+
 .eyebrow {
-  text-transform: uppercase; letter-spacing: 2px; font-size: 11px;
-  font-weight: 800; color: var(--accent-dark);
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
-h1 { font-size: clamp(27px, 4vw, 39px); margin: 9px 0; letter-spacing: -1px; }
+
+h1 {
+  margin: 9px 0;
+  font-size: clamp(27px, 4vw, 38px);
+  letter-spacing: -.8px;
+}
+
 h2 { margin: 0 0 15px; font-size: 21px; }
-h3 { margin: 0 0 8px; font-size: 16px; }
 p { line-height: 1.6; }
 .muted { color: var(--muted); }
-.welcome p { margin-bottom: 0; }
+
 .stats {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 14px; margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
 }
+
 .stat, .panel, .task, .quick-link {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 20px; box-shadow: var(--shadow);
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  box-shadow: var(--shadow);
 }
-.stat { padding: 20px; }
-.stat-number { font-size: 30px; font-weight: 900; margin-bottom: 4px; }
+
+.stat { padding: 19px; }
+
+.stat-number {
+  font-size: 29px;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
 .stat-label { color: var(--muted); font-size: 13px; }
-.columns { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
-.panel { padding: 23px; min-width: 0; }
-.quick-links {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: 18px;
 }
-.quick-link {
-  text-align: left; padding: 15px; cursor: pointer; color: var(--text);
-}
-.quick-link:hover { border-color: var(--accent); }
-.quick-link strong { display: block; margin-bottom: 5px; }
-.quick-link span { color: var(--muted); font-size: 12px; }
+
+.panel { padding: 22px; }
+
 .section-heading {
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
 }
-.primary { background: var(--accent); color: white; font-weight: 800; }
-.secondary { background: var(--soft); color: var(--accent-dark); }
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.quick-link {
+  min-width: 0;
+  padding: 14px;
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.quick-link:hover { border-color: var(--accent); }
+
+.quick-link strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.quick-link span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
 form { display: grid; gap: 13px; }
-.field { display: grid; gap: 7px; }
+
+.field { display: grid; gap: 7px; min-width: 0; }
+
 .field label { font-size: 13px; font-weight: 800; }
+
 input:not([type="color"]), textarea, select {
-  width: 100%; border: 1px solid var(--border); border-radius: 12px;
-  padding: 12px; background: var(--page); color: var(--text);
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--page);
+  color: var(--text);
 }
-textarea { resize: vertical; min-height: 82px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.tasks { display: grid; gap: 12px; margin-top: 20px; }
-.task { padding: 17px; box-shadow: none; }
-.task-top { display: flex; gap: 12px; align-items: flex-start; }
-.task-check { width: 19px; height: 19px; accent-color: var(--accent-dark); margin-top: 2px; }
-.task-content { flex: 1; min-width: 0; }
-.task-title { font-weight: 800; overflow-wrap: anywhere; }
-.task.completed .task-title { text-decoration: line-through; opacity: .6; }
-.task-meta { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 9px; }
+
+textarea { resize: vertical; min-height: 85px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tasks {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  min-width: 0;
+  width: 100%;
+}
+
+.task {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 16px;
+  box-shadow: none;
+}
+
+/* FIX: task text stays horizontal and wraps by word */
+.task-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  width: 100%;
+  min-width: 0;
+}
+
+.task-check {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--accent-dark);
+}
+
+.task-content {
+  display: block;
+  flex: 1 1 0%;
+  width: 0;
+  min-width: 0;
+  writing-mode: horizontal-tb;
+}
+
+.task-title {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  font-weight: 800;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  writing-mode: horizontal-tb;
+  letter-spacing: normal;
+  line-height: 1.5;
+}
+
+.task.completed .task-title {
+  text-decoration: line-through;
+  opacity: .6;
+}
+
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 9px;
+}
+
 .pill {
-  font-size: 11px; border-radius: 30px; padding: 5px 9px;
-  background: var(--soft); color: var(--accent-dark);
+  display: inline-block;
+  max-width: 100%;
+  padding: 5px 9px;
+  border-radius: 30px;
+  background: var(--soft);
+  color: var(--accent-dark);
+  font-size: 11px;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
-.task-notes { font-size: 13px; color: var(--muted); margin: 10px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
-.task-actions { display: flex; justify-content: flex-end; margin-top: 12px; }
-.delete { border: 0; background: transparent; color: var(--muted); padding: 5px; }
-.delete:hover { color: #c34262; }
+
+.task-notes {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: normal;
+  writing-mode: horizontal-tb;
+}
+
+.task-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.delete {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 5px;
+}
+
+.delete:hover { color: #bd365f; }
+
 .empty {
-  border: 1px dashed var(--border); border-radius: 17px;
-  padding: 25px; text-align: center; color: var(--muted);
+  padding: 23px;
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  color: var(--muted);
+  text-align: center;
+  overflow-wrap: break-word;
 }
+
+.notice { margin-top: 12px; color: var(--muted); font-size: 12px; }
 .hidden { display: none !important; }
-footer { text-align: center; padding: 20px; color: var(--muted); font-size: 12px; }
-.notice { color: var(--muted); font-size: 12px; margin-top: 13px; }
-@media (max-width: 720px) {
-  header { padding: 20px 5%; }
-  nav { padding: 12px 4%; }
-  main { width: 92%; margin-top: 20px; }
-  .columns { grid-template-columns: 1fr; }
-  .stats { gap: 8px; }
-  .stat { padding: 14px; }
-  .stat-number { font-size: 25px; }
-  .welcome { padding: 22px; }
+
+footer {
+  padding: 20px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
 }
+
+@media (max-width: 720px) {
+  header { padding: 18px 4%; }
+  nav { padding: 12px 4%; }
+  main { margin-top: 20px; }
+  .columns { grid-template-columns: minmax(0, 1fr); }
+  .stats { gap: 8px; }
+  .stat { padding: 13px; }
+  .stat-number { font-size: 24px; }
+  .welcome { padding: 22px; }
+  .panel { padding: 17px; }
+}
+
 @media (max-width: 420px) {
-  .form-row { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: minmax(0, 1fr); }
+  .stats { grid-template-columns: minmax(0, 1fr); }
+  .quick-links { grid-template-columns: minmax(0, 1fr); }
 }
 </style>
 </head>
+
 <body>
 <header>
   <div>
     <div class="brand">Bibi Plans <span>♡</span></div>
-    <div class="tagline">A little space for your big ideas.</div>
+    <div class="tagline">Your plans, your colors, your space.</div>
   </div>
+
   <div class="header-right">
-    <label class="color-label" for="themeColor">Your theme</label>
-    <input type="color" id="themeColor" value="#d88db3" aria-label="Choose your own theme color">
+    <label class="color-label" for="themeColor">Choose any color</label>
+    <input type="color" id="themeColor" value="#e58ab4" aria-label="Choose website color">
     <button class="small-button" id="resetTheme" type="button">Reset color</button>
   </div>
 </header>
 
-<nav id="navigation" aria-label="Planner sections">
+<nav aria-label="Planner navigation">
   <button class="nav-button active" data-page="Home">⌂ Home</button>
   <button class="nav-button" data-page="Homework">✎ Homework</button>
   <button class="nav-button" data-page="Tests">✧ Tests</button>
@@ -188,8 +419,8 @@ footer { text-align: center; padding: 20px; color: var(--muted); font-size: 12px
   <section id="homePage">
     <div class="welcome">
       <div class="eyebrow">YOUR PERSONAL PLANNER</div>
-      <h1>Make today a little more organized. ♡</h1>
-      <p class="muted">Keep track of schoolwork, plan ahead, and make room for your ideas.</p>
+      <h1>Welcome to Bibi Plans ♡</h1>
+      <p class="muted">Stay organized, plan ahead, and make time for your big ideas.</p>
     </div>
 
     <div class="stats">
@@ -215,16 +446,17 @@ footer { text-align: center; padding: 20px; color: var(--muted); font-size: 12px
         </div>
         <div id="upcomingTasks" class="tasks"></div>
       </section>
+
       <section class="panel">
-        <h2>Your planner menu</h2>
-        <p class="muted">Pick a section to get started.</p>
+        <h2>Quick access</h2>
+        <p class="muted">Choose a section to get started.</p>
         <div class="quick-links">
           <button class="quick-link" data-goto="Homework"><strong>✎ Homework</strong><span>Assignments and classwork</span></button>
-          <button class="quick-link" data-goto="Tests"><strong>✧ Tests</strong><span>Quizzes and test dates</span></button>
-          <button class="quick-link" data-goto="Projects"><strong>▤ Projects</strong><span>Big ideas and deadlines</span></button>
+          <button class="quick-link" data-goto="Tests"><strong>✧ Tests</strong><span>Tests and quizzes</span></button>
+          <button class="quick-link" data-goto="Projects"><strong>▤ Projects</strong><span>Big assignments</span></button>
           <button class="quick-link" data-goto="Clubs"><strong>♡ Clubs</strong><span>Meetings and activities</span></button>
-          <button class="quick-link" data-goto="Things Due"><strong>◷ Things Due</strong><span>Everything with a deadline</span></button>
-          <button class="quick-link" data-goto="Make-Up Tests"><strong>↻ Make-Up Tests</strong><span>Tests to reschedule</span></button>
+          <button class="quick-link" data-goto="Things Due"><strong>◷ Things Due</strong><span>All your deadlines</span></button>
+          <button class="quick-link" data-goto="Make-Up Tests"><strong>↻ Make-Up Tests</strong><span>Tests to make up</span></button>
         </div>
       </section>
     </div>
@@ -234,34 +466,39 @@ footer { text-align: center; padding: 20px; color: var(--muted); font-size: 12px
     <div class="welcome">
       <div class="eyebrow">YOUR PLANNER</div>
       <h1 id="sectionTitle">Homework</h1>
-      <p id="sectionDescription" class="muted">Keep everything organized in one place.</p>
+      <p id="sectionDescription" class="muted"></p>
     </div>
+
     <div class="columns">
       <section class="panel">
-        <h2>Add something new ✧</h2>
+        <h2>Add a task ✧</h2>
         <form id="taskForm">
           <div class="field">
-            <label for="taskTitle">Title *</label>
+            <label for="taskTitle">Task title *</label>
             <input id="taskTitle" maxlength="120" placeholder="e.g. Finish science worksheet" required>
           </div>
+
           <div class="form-row">
             <div class="field">
               <label for="taskDate">Due date</label>
               <input id="taskDate" type="date">
             </div>
             <div class="field">
-              <label for="taskClass">Class / activity</label>
+              <label for="taskClass">Class or activity</label>
               <input id="taskClass" maxlength="80" placeholder="e.g. Science">
             </div>
           </div>
+
           <div class="field">
             <label for="taskNotes">Notes</label>
-            <textarea id="taskNotes" maxlength="1500" placeholder="Add details, reminders, or things to bring..."></textarea>
+            <textarea id="taskNotes" maxlength="1500" placeholder="Instructions, reminders, or things to bring..."></textarea>
           </div>
+
           <button class="primary" type="submit">＋ Add to my planner</button>
         </form>
-        <p class="notice">Your planner saves in this browser on this device.</p>
+        <p class="notice">Tasks save in this browser on this device.</p>
       </section>
+
       <section class="panel">
         <div class="section-heading">
           <h2 id="listTitle">My Homework</h2>
@@ -277,88 +514,77 @@ footer { text-align: center; padding: 20px; color: var(--muted); font-size: 12px
   </section>
 </main>
 
-<footer>Bibi Plans ♡ &nbsp;·&nbsp; Your plans, your colors, your space.</footer>
+<footer>Bibi Plans ♡ · Plan · Study · Achieve · Be You</footer>
 
 <script>
 const sections = {
-  "Home": "Your personal school planner.",
-  "Homework": "Keep assignments and classwork organized.",
-  "Tests": "Track upcoming quizzes, tests, and study plans.",
-  "Projects": "Break big assignments into manageable steps.",
-  "Clubs": "Remember club meetings, activities, and reminders.",
-  "Things Due": "See your tasks and deadlines all in one place.",
-  "Make-Up Tests": "Keep track of tests you need to make up."
+  Home: "Your personal school planner.",
+  Homework: "Keep assignments and classwork organized.",
+  Tests: "Track upcoming tests, quizzes, and study plans.",
+  Projects: "Keep big assignments and deadlines in one place.",
+  Clubs: "Remember club meetings, activities, and reminders.",
+  "Things Due": "See all your tasks and deadlines in one place.",
+  "Make-Up Tests": "Keep track of tests you still need to make up."
 };
 
-const defaultColor = "#d88db3";
-const storageTasks = "bibiPlansTasks_v1";
-const storageColor = "bibiPlansColor_v1";
+const DEFAULT_COLOR = "#e58ab4";
+const TASKS_KEY = "bibiPlansTasks_v2";
+const COLOR_KEY = "bibiPlansColor_v2";
+let currentPage = "Home";
 let tasks = [];
+
 try {
-  const saved = JSON.parse(localStorage.getItem(storageTasks) || "[]");
-  tasks = Array.isArray(saved) ? saved : [];
+  const saved = JSON.parse(localStorage.getItem(TASKS_KEY) || "[]");
+  if (Array.isArray(saved)) tasks = saved;
 } catch (error) {
   tasks = [];
 }
 
 const $ = id => document.getElementById(id);
-const validSections = Object.keys(sections).filter(s => s !== "Home");
-let currentPage = "Home";
-
-function saveTasks() {
-  try {
-    localStorage.setItem(storageTasks, JSON.stringify(tasks));
-  } catch (error) {
-    alert("Your browser couldn't save the planner. Check your browser storage settings.");
-  }
-}
 
 function hexToRgb(hex) {
-  const h = hex.replace("#", "");
+  const clean = hex.replace("#", "");
   return {
-    r: parseInt(h.slice(0, 2), 16),
-    g: parseInt(h.slice(2, 4), 16),
-    b: parseInt(h.slice(4, 6), 16)
+    r: parseInt(clean.slice(0, 2), 16),
+    g: parseInt(clean.slice(2, 4), 16),
+    b: parseInt(clean.slice(4, 6), 16)
   };
 }
 
 function mixColor(hex, target, amount) {
   const a = hexToRgb(hex);
   const b = hexToRgb(target);
-  const c = ["r", "g", "b"].map(k =>
-    Math.round(a[k] * (1 - amount) + b[k] * amount)
+  const values = ["r", "g", "b"].map(key =>
+    Math.round(a[key] * (1 - amount) + b[key] * amount)
       .toString(16).padStart(2, "0")
   );
-  return "#" + c.join("");
+  return "#" + values.join("");
 }
 
 function setTheme(color, save = true) {
-  const rgb = hexToRgb(color);
-  const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
-  const dark = mixColor(color, "#24152a", .43);
+  if (!/^#[0-9a-f]{6}$/i.test(color)) return;
+
   document.documentElement.style.setProperty("--accent", color);
-  document.documentElement.style.setProperty("--accent-dark", dark);
-  document.documentElement.style.setProperty("--soft",
-    mixColor(color, "#ffffff", .84));
-  document.documentElement.style.setProperty("--page",
-    mixColor(color, "#ffffff", .94));
-  document.documentElement.style.setProperty("--border",
-    mixColor(color, "#ffffff", .72));
-  document.documentElement.style.setProperty("--surface",
-    brightness < 90 ? mixColor(color, "#ffffff", .94) : "#ffffff");
+  document.documentElement.style.setProperty("--accent-dark", mixColor(color, "#29152c", .43));
+  document.documentElement.style.setProperty("--soft", mixColor(color, "#ffffff", .84));
+  document.documentElement.style.setProperty("--page", mixColor(color, "#ffffff", .94));
+  document.documentElement.style.setProperty("--border", mixColor(color, "#ffffff", .72));
+  document.documentElement.style.setProperty("--surface", "#ffffff");
+
   $("themeColor").value = color;
+
   if (save) {
-    try { localStorage.setItem(storageColor, color); } catch (error) {}
+    try { localStorage.setItem(COLOR_KEY, color); } catch (error) {}
   }
 }
 
 try {
-  const savedColor = localStorage.getItem(storageColor);
-  if (savedColor && /^#[0-9a-f]{6}$/i.test(savedColor)) setTheme(savedColor, false);
+  const savedColor = localStorage.getItem(COLOR_KEY);
+  if (savedColor) setTheme(savedColor, false);
 } catch (error) {}
 
 $("themeColor").addEventListener("input", event => setTheme(event.target.value));
-$("resetTheme").addEventListener("click", () => setTheme(defaultColor));
+$("resetTheme").addEventListener("click", () => setTheme(DEFAULT_COLOR));
 
 function navigate(page) {
   currentPage = page;
@@ -374,36 +600,46 @@ function navigate(page) {
     $("sectionDescription").textContent = sections[page];
     $("listTitle").textContent = page === "Things Due" ? "All deadlines" : "My " + page;
     $("taskFilter").value = "all";
-    $("taskDate").value = "";
     renderSectionTasks();
   }
+
   renderHome();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-document.querySelectorAll("[data-page]").forEach(button =>
-  button.addEventListener("click", () => navigate(button.dataset.page))
-);
-document.querySelectorAll("[data-goto]").forEach(button =>
-  button.addEventListener("click", () => navigate(button.dataset.goto))
-);
+document.querySelectorAll("[data-page]").forEach(button => {
+  button.addEventListener("click", () => navigate(button.dataset.page));
+});
+
+document.querySelectorAll("[data-goto]").forEach(button => {
+  button.addEventListener("click", () => navigate(button.dataset.goto));
+});
+
 $("seeDue").addEventListener("click", () => navigate("Things Due"));
 $("taskFilter").addEventListener("change", renderSectionTasks);
 
+function saveTasks() {
+  try {
+    localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
+  } catch (error) {
+    alert("Your browser couldn't save your tasks. Check your browser storage settings.");
+  }
+}
+
 $("taskForm").addEventListener("submit", event => {
   event.preventDefault();
+
   const title = $("taskTitle").value.trim();
   if (!title) return;
 
   tasks.push({
-    id: Date.now().toString() + Math.random().toString(36).slice(2, 7),
+    id: Date.now().toString() + Math.random().toString(36).slice(2, 8),
     title,
     date: $("taskDate").value,
     className: $("taskClass").value.trim(),
     notes: $("taskNotes").value.trim(),
     category: currentPage,
-    completed: false,
-    created: Date.now()
+    completed: false
   });
 
   saveTasks();
@@ -415,14 +651,16 @@ $("taskForm").addEventListener("submit", event => {
 function dateText(date) {
   if (!date) return "No due date";
   const d = new Date(date + "T12:00:00");
-  return d.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+  return d.toLocaleDateString(undefined, {
+    month: "short", day: "numeric", year: "numeric"
+  });
 }
 
 function dateOrder(task) {
   return task.date || "9999-12-31";
 }
 
-function taskCard(task) {
+function createTaskCard(task) {
   const article = document.createElement("article");
   article.className = "task" + (task.completed ? " completed" : "");
 
@@ -432,8 +670,9 @@ function taskCard(task) {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.className = "task-check";
-  checkbox.checked = !!task.completed;
-  checkbox.setAttribute("aria-label", "Mark " + task.title + " complete");
+  checkbox.checked = Boolean(task.completed);
+  checkbox.setAttribute("aria-label", "Mark task complete");
+
   checkbox.addEventListener("change", () => {
     task.completed = checkbox.checked;
     saveTasks();
@@ -458,6 +697,7 @@ function taskCard(task) {
     pill.textContent = value;
     meta.appendChild(pill);
   });
+
   content.appendChild(meta);
 
   if (task.notes) {
@@ -472,20 +712,23 @@ function taskCard(task) {
 
   const actions = document.createElement("div");
   actions.className = "task-actions";
+
   const del = document.createElement("button");
   del.className = "delete";
   del.type = "button";
   del.textContent = "Delete task";
+
   del.addEventListener("click", () => {
-    if (confirm("Delete this task?")) {
-      tasks = tasks.filter(t => t.id !== task.id);
-      saveTasks();
-      renderSectionTasks();
-      renderHome();
-    }
+    if (!confirm("Delete this task?")) return;
+    tasks = tasks.filter(item => item.id !== task.id);
+    saveTasks();
+    renderSectionTasks();
+    renderHome();
   });
+
   actions.appendChild(del);
   article.appendChild(actions);
+
   return article;
 }
 
@@ -493,31 +736,30 @@ function renderSectionTasks() {
   const container = $("sectionTasks");
   container.replaceChildren();
 
-  let list = tasks.filter(task => {
-    if (currentPage === "Things Due") return true;
-    return task.category === currentPage;
-  });
+  let list = tasks.filter(task =>
+    currentPage === "Things Due" || task.category === currentPage
+  );
 
   const filter = $("taskFilter").value;
-  if (filter === "active") list = list.filter(t => !t.completed);
-  if (filter === "completed") list = list.filter(t => t.completed);
+  if (filter === "active") list = list.filter(task => !task.completed);
+  if (filter === "completed") list = list.filter(task => task.completed);
+
   list.sort((a, b) => dateOrder(a).localeCompare(dateOrder(b)));
 
   if (!list.length) {
     const empty = document.createElement("div");
     empty.className = "empty";
-    empty.textContent = filter === "completed"
-      ? "No completed tasks here yet. You've got this! ♡"
-      : "Nothing here yet. Add your first task! ✧";
+    empty.textContent = "Nothing here yet. Add your first task! ♡";
     container.appendChild(empty);
     return;
   }
 
-  list.forEach(task => container.appendChild(taskCard(task)));
+  list.forEach(task => container.appendChild(createTaskCard(task)));
 }
 
 function renderHome() {
-  const completed = tasks.filter(t => t.completed).length;
+  const completed = tasks.filter(task => task.completed).length;
+
   $("totalCount").textContent = tasks.length;
   $("remainingCount").textContent = tasks.length - completed;
   $("completedCount").textContent = completed;
@@ -526,17 +768,17 @@ function renderHome() {
   container.replaceChildren();
 
   const upcoming = tasks
-    .filter(t => !t.completed)
+    .filter(task => !task.completed)
     .sort((a, b) => dateOrder(a).localeCompare(dateOrder(b)))
     .slice(0, 5);
 
   if (!upcoming.length) {
     const empty = document.createElement("div");
     empty.className = "empty";
-    empty.textContent = "Your space is ready! Add a task to get started. ♡";
+    empty.textContent = "Your planner is ready! Add a task to get started. ♡";
     container.appendChild(empty);
   } else {
-    upcoming.forEach(task => container.appendChild(taskCard(task)));
+    upcoming.forEach(task => container.appendChild(createTaskCard(task)));
   }
 }
 
