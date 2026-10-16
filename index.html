@@ -5,717 +5,543 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bibi Plans ♡</title>
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
-
 :root {
-  --page-bg: #fff8fa;
-  --paper: #fffdfc;
-  --card-bg: #fffdfc;
-  --ink: #514751;
-  --muted: #948590;
-  --line: #f0e6eb;
-  --accent: #d99bb5;
-  --accent-hover: #c783a0;
-  --accent-light: #fff0f5;
-  --accent-dark: #bd7994;
-  --field-bg: #ffffff;
-  --welcome: linear-gradient(120deg, #ffeaf1, #f6edff, #eaf4ff);
-  --empty-bg: #fffafb;
-  --shadow: #75506b08;
+  --accent: #d88db3;
+  --accent-dark: #a95481;
+  --page: #fff7fb;
+  --surface: #ffffff;
+  --soft: #f9e8f1;
+  --text: #493b47;
+  --muted: #897987;
+  --border: #f0dce7;
+  --shadow: 0 8px 28px rgba(100, 60, 90, .07);
 }
-
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
-  background: var(--page-bg);
-  color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
+  background: var(--page);
+  color: var(--text);
+  font-family: "Trebuchet MS", Arial, sans-serif;
   transition: background .2s, color .2s;
 }
-
-button, input, select, textarea { font: inherit; }
+button, input, textarea, select { font: inherit; }
 button { cursor: pointer; }
-
+button:focus-visible, input:focus-visible, textarea:focus-visible,
+select:focus-visible { outline: 2px solid var(--accent-dark); outline-offset: 2px; }
 header {
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
-  padding: 22px 6%;
-}
-
-.top {
-  max-width: 1100px;
-  margin: auto;
+  padding: 23px 6%;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
 }
-
-.logo {
-  font: 700 29px 'Quicksand', sans-serif;
-  color: var(--accent-dark);
-  letter-spacing: -1px;
-}
-
-.logo span { color: var(--accent); }
-
-.tagline {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 4px;
-}
-
-.palette {
-  display: flex;
-  gap: 9px;
-}
-
-.swatch {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 2px solid white;
-  box-shadow: 0 0 0 1px var(--line);
-  padding: 0;
-}
-
-.swatch:hover { transform: scale(1.1); }
-.swatch:focus { outline: 2px solid var(--accent-dark); }
-
-nav {
-  display: flex;
-  gap: 8px;
-  max-width: 1100px;
-  margin: auto;
-  padding: 14px 6%;
-  overflow-x: auto;
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
-}
-
-nav button {
-  flex-shrink: 0;
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 13px;
-}
-
-nav button:hover { background: var(--accent-light); }
-
-nav button.active {
-  background: var(--accent-light);
-  color: var(--accent-dark);
-  font-weight: 700;
-}
-
-main {
-  max-width: 1050px;
-  padding: 30px 22px 60px;
-  margin: auto;
-}
-
-h1, h2, h3 { font-family: 'Quicksand', sans-serif; }
-
-h1 {
-  font-size: clamp(27px, 4vw, 38px);
-  margin: 0 0 9px;
-  letter-spacing: -1px;
-}
-
-h2 { font-size: 21px; margin-top: 0; }
-
-.muted { color: var(--muted); font-size: 14px; }
-
-.welcome {
-  background: var(--welcome);
-  padding: 30px;
-  border-radius: 23px;
-  margin-bottom: 22px;
-  transition: background .2s;
-}
-
-.welcome p { margin-bottom: 0; line-height: 1.7; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin: 20px 0;
-}
-
-.card, .panel {
-  background: var(--card-bg);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 20px;
-  box-shadow: 0 4px 16px var(--shadow);
-  transition: background .2s, border-color .2s;
-}
-
-.card {
-  min-height: 125px;
+.brand { font-size: 27px; font-weight: 900; letter-spacing: -.8px; }
+.brand span { color: var(--accent-dark); }
+.tagline { color: var(--muted); font-size: 13px; margin-top: 5px; }
+.header-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.color-label { font-size: 13px; color: var(--muted); }
+input[type="color"] {
+  width: 43px; height: 39px; border: 2px solid var(--border);
+  border-radius: 12px; background: var(--surface); padding: 3px;
   cursor: pointer;
-  transition: transform .15s, background .2s;
 }
-
-.card:hover { transform: translateY(-2px); }
-.card .emoji { font-size: 25px; }
-.card h3 { margin: 10px 0 5px; font-size: 17px; }
-.card p { margin: 0; font-size: 13px; color: var(--muted); }
-
+.small-button, .primary, .secondary, .nav-button {
+  border: 0; border-radius: 12px; padding: 11px 15px;
+  transition: transform .15s, opacity .15s;
+}
+.small-button:hover, .primary:hover, .secondary:hover, .nav-button:hover {
+  transform: translateY(-1px);
+}
+.small-button { background: var(--soft); color: var(--text); }
+nav {
+  display: flex; gap: 8px; padding: 14px 6%;
+  overflow-x: auto; background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.nav-button {
+  white-space: nowrap; background: transparent; color: var(--muted);
+  border: 1px solid transparent;
+}
+.nav-button.active {
+  background: var(--soft); color: var(--accent-dark);
+  border-color: var(--border); font-weight: 800;
+}
+main { width: min(1120px, 92%); margin: 30px auto 60px; }
+.welcome {
+  background: var(--soft); border: 1px solid var(--border);
+  border-radius: 24px; padding: 30px; margin-bottom: 24px;
+}
+.eyebrow {
+  text-transform: uppercase; letter-spacing: 2px; font-size: 11px;
+  font-weight: 800; color: var(--accent-dark);
+}
+h1 { font-size: clamp(27px, 4vw, 39px); margin: 9px 0; letter-spacing: -1px; }
+h2 { margin: 0 0 15px; font-size: 21px; }
+h3 { margin: 0 0 8px; font-size: 16px; }
+p { line-height: 1.6; }
+.muted { color: var(--muted); }
+.welcome p { margin-bottom: 0; }
+.stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px; margin-bottom: 24px;
+}
+.stat, .panel, .task, .quick-link {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; box-shadow: var(--shadow);
+}
+.stat { padding: 20px; }
+.stat-number { font-size: 30px; font-weight: 900; margin-bottom: 4px; }
+.stat-label { color: var(--muted); font-size: 13px; }
+.columns { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
+.panel { padding: 23px; min-width: 0; }
+.quick-links {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+}
+.quick-link {
+  text-align: left; padding: 15px; cursor: pointer; color: var(--text);
+}
+.quick-link:hover { border-color: var(--accent); }
+.quick-link strong { display: block; margin-bottom: 5px; }
+.quick-link span { color: var(--muted); font-size: 12px; }
 .section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 28px 0 14px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; margin-bottom: 20px; flex-wrap: wrap;
 }
-
-.primary {
-  background: var(--accent);
-  color: white;
-  border: 0;
-  border-radius: 12px;
-  padding: 11px 16px;
-  font-weight: 700;
-  transition: background .2s;
+.primary { background: var(--accent); color: white; font-weight: 800; }
+.secondary { background: var(--soft); color: var(--accent-dark); }
+form { display: grid; gap: 13px; }
+.field { display: grid; gap: 7px; }
+.field label { font-size: 13px; font-weight: 800; }
+input:not([type="color"]), textarea, select {
+  width: 100%; border: 1px solid var(--border); border-radius: 12px;
+  padding: 12px; background: var(--page); color: var(--text);
 }
-
-.primary:hover { background: var(--accent-hover); }
-
-.secondary {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--card-bg);
-  padding: 8px 11px;
-  color: var(--ink);
+textarea { resize: vertical; min-height: 82px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tasks { display: grid; gap: 12px; margin-top: 20px; }
+.task { padding: 17px; box-shadow: none; }
+.task-top { display: flex; gap: 12px; align-items: flex-start; }
+.task-check { width: 19px; height: 19px; accent-color: var(--accent-dark); margin-top: 2px; }
+.task-content { flex: 1; min-width: 0; }
+.task-title { font-weight: 800; overflow-wrap: anywhere; }
+.task.completed .task-title { text-decoration: line-through; opacity: .6; }
+.task-meta { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 9px; }
+.pill {
+  font-size: 11px; border-radius: 30px; padding: 5px 9px;
+  background: var(--soft); color: var(--accent-dark);
 }
-
-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-label {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-input, select, textarea {
-  width: 100%;
-  border: 1px solid var(--line);
-  background: var(--field-bg);
-  color: var(--ink);
-  border-radius: 11px;
-  padding: 11px 12px;
-  outline: none;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-light);
-}
-
-.full { grid-column: 1 / -1; }
-
-.task-list { display: grid; gap: 10px; }
-
-.task {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 15px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--card-bg);
-}
-
-.task input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  accent-color: var(--accent-dark);
-}
-
-.task-info { flex: 1; min-width: 0; }
-.task-title { font-weight: 700; overflow-wrap: anywhere; }
-.task-details { font-size: 12px; color: var(--muted); margin-top: 5px; }
-
-.task.completed .task-title {
-  text-decoration: line-through;
-  color: var(--muted);
-}
-
-.delete {
-  border: 0;
-  background: transparent;
-  color: var(--accent-dark);
-  padding: 4px;
-  font-size: 20px;
-}
-
+.task-notes { font-size: 13px; color: var(--muted); margin: 10px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.task-actions { display: flex; justify-content: flex-end; margin-top: 12px; }
+.delete { border: 0; background: transparent; color: var(--muted); padding: 5px; }
+.delete:hover { color: #c34262; }
 .empty {
-  text-align: center;
-  padding: 28px 15px;
-  color: var(--muted);
-  background: var(--empty-bg);
-  border: 1px dashed var(--line);
-  border-radius: 14px;
+  border: 1px dashed var(--border); border-radius: 17px;
+  padding: 25px; text-align: center; color: var(--muted);
 }
-
 .hidden { display: none !important; }
-
-footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  padding: 25px;
+footer { text-align: center; padding: 20px; color: var(--muted); font-size: 12px; }
+.notice { color: var(--muted); font-size: 12px; margin-top: 13px; }
+@media (max-width: 720px) {
+  header { padding: 20px 5%; }
+  nav { padding: 12px 4%; }
+  main { width: 92%; margin-top: 20px; }
+  .columns { grid-template-columns: 1fr; }
+  .stats { gap: 8px; }
+  .stat { padding: 14px; }
+  .stat-number { font-size: 25px; }
+  .welcome { padding: 22px; }
 }
-
-@media (max-width: 650px) {
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .welcome { padding: 23px; }
-  form { grid-template-columns: 1fr; }
-  .full { grid-column: auto; }
-  .top { align-items: flex-start; }
-  .logo { font-size: 25px; }
-}
-
-@media (max-width: 390px) {
-  .grid { grid-template-columns: 1fr; }
+@media (max-width: 420px) {
+  .form-row { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
 }
 </style>
 </head>
-
 <body>
 <header>
-  <div class="top">
-    <div>
-      <div class="logo">bibi plans <span>♡</span></div>
-      <div class="tagline">a little space for your big ideas</div>
-    </div>
-
-    <div class="palette" aria-label="Change theme">
-      <button class="swatch" style="background:#f5c5d5"
-        aria-label="Pink theme" title="Pink theme"
-        onclick="setTheme('pink')"></button>
-      <button class="swatch" style="background:#dcebd9"
-        aria-label="Green theme" title="Green theme"
-        onclick="setTheme('green')"></button>
-      <button class="swatch" style="background:#dce9f8"
-        aria-label="Blue theme" title="Blue theme"
-        onclick="setTheme('blue')"></button>
-    </div>
+  <div>
+    <div class="brand">Bibi Plans <span>♡</span></div>
+    <div class="tagline">A little space for your big ideas.</div>
+  </div>
+  <div class="header-right">
+    <label class="color-label" for="themeColor">Your theme</label>
+    <input type="color" id="themeColor" value="#d88db3" aria-label="Choose your own theme color">
+    <button class="small-button" id="resetTheme" type="button">Reset color</button>
   </div>
 </header>
 
-<nav id="navigation">
-  <button class="active" data-page="Home">⌂ Home</button>
-  <button data-page="Homework">♡ Homework</button>
-  <button data-page="Tests">✎ Tests</button>
-  <button data-page="Projects">✿ Projects</button>
-  <button data-page="Clubs">☁ Clubs</button>
-  <button data-page="Things Due">☆ Things Due</button>
-  <button data-page="Make-Up Tests">↻ Make-Up Tests</button>
+<nav id="navigation" aria-label="Planner sections">
+  <button class="nav-button active" data-page="Home">⌂ Home</button>
+  <button class="nav-button" data-page="Homework">✎ Homework</button>
+  <button class="nav-button" data-page="Tests">✧ Tests</button>
+  <button class="nav-button" data-page="Projects">▤ Projects</button>
+  <button class="nav-button" data-page="Clubs">♡ Clubs</button>
+  <button class="nav-button" data-page="Things Due">◷ Things Due</button>
+  <button class="nav-button" data-page="Make-Up Tests">↻ Make-Up Tests</button>
 </nav>
 
 <main>
   <section id="homePage">
     <div class="welcome">
-      <h1>Your life, a little more organized. ♡</h1>
-      <p class="muted">One small step at a time. Keep your schoolwork, plans, and ideas all in one place.</p>
+      <div class="eyebrow">YOUR PERSONAL PLANNER</div>
+      <h1>Make today a little more organized. ♡</h1>
+      <p class="muted">Keep track of schoolwork, plan ahead, and make room for your ideas.</p>
     </div>
 
-    <div class="grid">
-      <div class="card" onclick="showPage('Homework')">
-        <div class="emoji">📚</div>
-        <h3>Homework</h3>
-        <p id="homeworkCount">Your assignments</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number" id="totalCount">0</div>
+        <div class="stat-label">Total tasks</div>
       </div>
-
-      <div class="card" onclick="showPage('Tests')">
-        <div class="emoji">📝</div>
-        <h3>Tests & quizzes</h3>
-        <p id="testsCount">Stay prepared</p>
+      <div class="stat">
+        <div class="stat-number" id="remainingCount">0</div>
+        <div class="stat-label">Still to do</div>
       </div>
-
-      <div class="card" onclick="showPage('Projects')">
-        <div class="emoji">🎨</div>
-        <h3>Projects</h3>
-        <p id="projectsCount">Big ideas start here</p>
-      </div>
-
-      <div class="card" onclick="showPage('Clubs')">
-        <div class="emoji">🌷</div>
-        <h3>Clubs</h3>
-        <p id="clubsCount">Activities and meetings</p>
-      </div>
-
-      <div class="card" onclick="showPage('Things Due')">
-        <div class="emoji">📌</div>
-        <h3>Things due</h3>
-        <p id="thingsCount">Important deadlines</p>
-      </div>
-
-      <div class="card" onclick="showPage('Make-Up Tests')">
-        <div class="emoji">🌼</div>
-        <h3>Make-up tests</h3>
-        <p id="makeupCount">Tests to reschedule</p>
+      <div class="stat">
+        <div class="stat-number" id="completedCount">0</div>
+        <div class="stat-label">Completed ♡</div>
       </div>
     </div>
 
-    <div class="section-heading">
-      <h2>Your upcoming plans ✨</h2>
-      <button class="primary" onclick="showPage('Homework')">+ Add a task</button>
+    <div class="columns">
+      <section class="panel">
+        <div class="section-heading">
+          <h2>Coming up ✧</h2>
+          <button class="secondary" id="seeDue" type="button">See all</button>
+        </div>
+        <div id="upcomingTasks" class="tasks"></div>
+      </section>
+      <section class="panel">
+        <h2>Your planner menu</h2>
+        <p class="muted">Pick a section to get started.</p>
+        <div class="quick-links">
+          <button class="quick-link" data-goto="Homework"><strong>✎ Homework</strong><span>Assignments and classwork</span></button>
+          <button class="quick-link" data-goto="Tests"><strong>✧ Tests</strong><span>Quizzes and test dates</span></button>
+          <button class="quick-link" data-goto="Projects"><strong>▤ Projects</strong><span>Big ideas and deadlines</span></button>
+          <button class="quick-link" data-goto="Clubs"><strong>♡ Clubs</strong><span>Meetings and activities</span></button>
+          <button class="quick-link" data-goto="Things Due"><strong>◷ Things Due</strong><span>Everything with a deadline</span></button>
+          <button class="quick-link" data-goto="Make-Up Tests"><strong>↻ Make-Up Tests</strong><span>Tests to reschedule</span></button>
+        </div>
+      </section>
     </div>
-
-    <div id="upcoming" class="task-list"></div>
   </section>
 
-  <section id="plannerPage" class="hidden">
+  <section id="sectionPage" class="hidden">
     <div class="welcome">
-      <h1 id="pageTitle">Homework ♡</h1>
-      <p class="muted" id="pageDescription">Everything you need, all in one place.</p>
+      <div class="eyebrow">YOUR PLANNER</div>
+      <h1 id="sectionTitle">Homework</h1>
+      <p id="sectionDescription" class="muted">Keep everything organized in one place.</p>
     </div>
-
-    <div class="panel">
-      <h2>Add something new ✿</h2>
-
-      <form id="taskForm">
-        <div class="full">
-          <label for="taskName">What do you need to do?</label>
-          <input id="taskName" maxlength="120"
-            placeholder="e.g. Finish science worksheet" required>
+    <div class="columns">
+      <section class="panel">
+        <h2>Add something new ✧</h2>
+        <form id="taskForm">
+          <div class="field">
+            <label for="taskTitle">Title *</label>
+            <input id="taskTitle" maxlength="120" placeholder="e.g. Finish science worksheet" required>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="taskDate">Due date</label>
+              <input id="taskDate" type="date">
+            </div>
+            <div class="field">
+              <label for="taskClass">Class / activity</label>
+              <input id="taskClass" maxlength="80" placeholder="e.g. Science">
+            </div>
+          </div>
+          <div class="field">
+            <label for="taskNotes">Notes</label>
+            <textarea id="taskNotes" maxlength="1500" placeholder="Add details, reminders, or things to bring..."></textarea>
+          </div>
+          <button class="primary" type="submit">＋ Add to my planner</button>
+        </form>
+        <p class="notice">Your planner saves in this browser on this device.</p>
+      </section>
+      <section class="panel">
+        <div class="section-heading">
+          <h2 id="listTitle">My Homework</h2>
+          <select id="taskFilter" aria-label="Filter tasks" style="width:auto;max-width:150px">
+            <option value="all">All tasks</option>
+            <option value="active">To do</option>
+            <option value="completed">Completed</option>
+          </select>
         </div>
-
-        <div>
-          <label for="taskDate">Due date</label>
-          <input id="taskDate" type="date">
-        </div>
-
-        <div>
-          <label for="taskSubject">Class or activity</label>
-          <input id="taskSubject" maxlength="80" placeholder="e.g. Science">
-        </div>
-
-        <div class="full">
-          <label for="taskNotes">Extra notes (optional)</label>
-          <textarea id="taskNotes" rows="2" maxlength="300"
-            placeholder="Pages, reminders, what to bring..."></textarea>
-        </div>
-
-        <div class="full">
-          <button class="primary" type="submit">Save to my planner ♡</button>
-        </div>
-      </form>
+        <div id="sectionTasks" class="tasks"></div>
+      </section>
     </div>
-
-    <div class="section-heading">
-      <h2 id="listHeading">My tasks</h2>
-      <select id="taskFilter" aria-label="Filter tasks" style="width:auto">
-        <option value="all">All tasks</option>
-        <option value="active">Not finished</option>
-        <option value="completed">Finished</option>
-      </select>
-    </div>
-
-    <div id="taskList" class="task-list"></div>
   </section>
 </main>
 
-<footer>made with ♡ by you · bibi plans</footer>
+<footer>Bibi Plans ♡ &nbsp;·&nbsp; Your plans, your colors, your space.</footer>
 
 <script>
-const categories = [
-  'Homework', 'Tests', 'Projects', 'Clubs',
-  'Things Due', 'Make-Up Tests'
-];
-
-const descriptions = {
-  'Homework': 'Keep track of assignments, worksheets, and reading.',
-  'Tests': 'Record test dates and what you want to study.',
-  'Projects': 'Break big projects into smaller steps.',
-  'Clubs': 'Meetings, activities, and things to bring.',
-  'Things Due': 'Anything important you need to turn in.',
-  'Make-Up Tests': 'Keep track of tests you need to make up.'
+const sections = {
+  "Home": "Your personal school planner.",
+  "Homework": "Keep assignments and classwork organized.",
+  "Tests": "Track upcoming quizzes, tests, and study plans.",
+  "Projects": "Break big assignments into manageable steps.",
+  "Clubs": "Remember club meetings, activities, and reminders.",
+  "Things Due": "See your tasks and deadlines all in one place.",
+  "Make-Up Tests": "Keep track of tests you need to make up."
 };
 
-const themes = {
-  pink: {
-    page: '#fff8fa',
-    paper: '#fffdfc',
-    ink: '#514751',
-    muted: '#948590',
-    line: '#f0e6eb',
-    accent: '#d99bb5',
-    hover: '#c783a0',
-    light: '#fff0f5',
-    dark: '#bd7994',
-    field: '#ffffff',
-    welcome: 'linear-gradient(120deg, #ffeaf1, #f6edff, #eaf4ff)',
-    empty: '#fffafb'
-  },
-  green: {
-    page: '#f2f8ef',
-    paper: '#fcfff9',
-    ink: '#3e5140',
-    muted: '#7d927e',
-    line: '#dce8d7',
-    accent: '#8bb58a',
-    hover: '#709b72',
-    light: '#e5f1e1',
-    dark: '#547c55',
-    field: '#ffffff',
-    welcome: 'linear-gradient(120deg, #dcefd6, #edf6e8, #e0efe3)',
-    empty: '#f8fcf6'
-  },
-  blue: {
-    page: '#f2f7fd',
-    paper: '#fcfdff',
-    ink: '#45536a',
-    muted: '#8290a7',
-    line: '#dce7f5',
-    accent: '#8eacd8',
-    hover: '#7295c7',
-    light: '#e7f0fc',
-    dark: '#587baa',
-    field: '#ffffff',
-    welcome: 'linear-gradient(120deg, #e0ecfb, #edf1ff, #e1f5fa)',
-    empty: '#f8fbff'
-  }
-};
-
-function setTheme(theme) {
-  const chosen = themes[theme] || themes.pink;
-  const root = document.documentElement;
-
-  root.style.setProperty('--page-bg', chosen.page);
-  root.style.setProperty('--paper', chosen.paper);
-  root.style.setProperty('--card-bg', chosen.paper);
-  root.style.setProperty('--ink', chosen.ink);
-  root.style.setProperty('--muted', chosen.muted);
-  root.style.setProperty('--line', chosen.line);
-  root.style.setProperty('--accent', chosen.accent);
-  root.style.setProperty('--accent-hover', chosen.hover);
-  root.style.setProperty('--accent-light', chosen.light);
-  root.style.setProperty('--accent-dark', chosen.dark);
-  root.style.setProperty('--field-bg', chosen.field);
-  root.style.setProperty('--welcome', chosen.welcome);
-  root.style.setProperty('--empty-bg', chosen.empty);
-
-  try {
-    localStorage.setItem('bibiPlansTheme', theme);
-  } catch (error) {}
-}
-
+const defaultColor = "#d88db3";
+const storageTasks = "bibiPlansTasks_v1";
+const storageColor = "bibiPlansColor_v1";
 let tasks = [];
-
 try {
-  tasks = JSON.parse(localStorage.getItem('bibiPlansTasks') || '[]');
-  if (!Array.isArray(tasks)) tasks = [];
+  const saved = JSON.parse(localStorage.getItem(storageTasks) || "[]");
+  tasks = Array.isArray(saved) ? saved : [];
 } catch (error) {
   tasks = [];
 }
 
-let currentPage = 'Home';
+const $ = id => document.getElementById(id);
+const validSections = Object.keys(sections).filter(s => s !== "Home");
+let currentPage = "Home";
 
 function saveTasks() {
   try {
-    localStorage.setItem('bibiPlansTasks', JSON.stringify(tasks));
+    localStorage.setItem(storageTasks, JSON.stringify(tasks));
   } catch (error) {
-    alert('Your browser could not save your tasks. Try allowing site storage.');
+    alert("Your browser couldn't save the planner. Check your browser storage settings.");
   }
 }
 
-function showPage(page) {
+function hexToRgb(hex) {
+  const h = hex.replace("#", "");
+  return {
+    r: parseInt(h.slice(0, 2), 16),
+    g: parseInt(h.slice(2, 4), 16),
+    b: parseInt(h.slice(4, 6), 16)
+  };
+}
+
+function mixColor(hex, target, amount) {
+  const a = hexToRgb(hex);
+  const b = hexToRgb(target);
+  const c = ["r", "g", "b"].map(k =>
+    Math.round(a[k] * (1 - amount) + b[k] * amount)
+      .toString(16).padStart(2, "0")
+  );
+  return "#" + c.join("");
+}
+
+function setTheme(color, save = true) {
+  const rgb = hexToRgb(color);
+  const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+  const dark = mixColor(color, "#24152a", .43);
+  document.documentElement.style.setProperty("--accent", color);
+  document.documentElement.style.setProperty("--accent-dark", dark);
+  document.documentElement.style.setProperty("--soft",
+    mixColor(color, "#ffffff", .84));
+  document.documentElement.style.setProperty("--page",
+    mixColor(color, "#ffffff", .94));
+  document.documentElement.style.setProperty("--border",
+    mixColor(color, "#ffffff", .72));
+  document.documentElement.style.setProperty("--surface",
+    brightness < 90 ? mixColor(color, "#ffffff", .94) : "#ffffff");
+  $("themeColor").value = color;
+  if (save) {
+    try { localStorage.setItem(storageColor, color); } catch (error) {}
+  }
+}
+
+try {
+  const savedColor = localStorage.getItem(storageColor);
+  if (savedColor && /^#[0-9a-f]{6}$/i.test(savedColor)) setTheme(savedColor, false);
+} catch (error) {}
+
+$("themeColor").addEventListener("input", event => setTheme(event.target.value));
+$("resetTheme").addEventListener("click", () => setTheme(defaultColor));
+
+function navigate(page) {
   currentPage = page;
+  $("homePage").classList.toggle("hidden", page !== "Home");
+  $("sectionPage").classList.toggle("hidden", page === "Home");
 
-  document.getElementById('homePage').classList.toggle('hidden', page !== 'Home');
-  document.getElementById('plannerPage').classList.toggle('hidden', page === 'Home');
-
-  document.querySelectorAll('#navigation button').forEach(button => {
-    button.classList.toggle('active', button.dataset.page === page);
+  document.querySelectorAll(".nav-button").forEach(button => {
+    button.classList.toggle("active", button.dataset.page === page);
   });
 
-  if (page !== 'Home') {
-    document.getElementById('pageTitle').textContent = page + ' ♡';
-    document.getElementById('pageDescription').textContent = descriptions[page];
-    document.getElementById('listHeading').textContent = 'My ' + page.toLowerCase();
+  if (page !== "Home") {
+    $("sectionTitle").textContent = page;
+    $("sectionDescription").textContent = sections[page];
+    $("listTitle").textContent = page === "Things Due" ? "All deadlines" : "My " + page;
+    $("taskFilter").value = "all";
+    $("taskDate").value = "";
+    renderSectionTasks();
   }
-
-  renderTasks();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  renderHome();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-document.getElementById('navigation').addEventListener('click', event => {
-  const button = event.target.closest('button[data-page]');
-  if (button) showPage(button.dataset.page);
-});
+document.querySelectorAll("[data-page]").forEach(button =>
+  button.addEventListener("click", () => navigate(button.dataset.page))
+);
+document.querySelectorAll("[data-goto]").forEach(button =>
+  button.addEventListener("click", () => navigate(button.dataset.goto))
+);
+$("seeDue").addEventListener("click", () => navigate("Things Due"));
+$("taskFilter").addEventListener("change", renderSectionTasks);
 
-document.getElementById('taskForm').addEventListener('submit', event => {
+$("taskForm").addEventListener("submit", event => {
   event.preventDefault();
-
-  const title = document.getElementById('taskName').value.trim();
+  const title = $("taskTitle").value.trim();
   if (!title) return;
 
   tasks.push({
-    id: Date.now().toString() + Math.random().toString(16).slice(2),
+    id: Date.now().toString() + Math.random().toString(36).slice(2, 7),
     title,
+    date: $("taskDate").value,
+    className: $("taskClass").value.trim(),
+    notes: $("taskNotes").value.trim(),
     category: currentPage,
-    date: document.getElementById('taskDate').value,
-    subject: document.getElementById('taskSubject').value.trim(),
-    notes: document.getElementById('taskNotes').value.trim(),
-    completed: false
+    completed: false,
+    created: Date.now()
   });
 
   saveTasks();
-  event.target.reset();
-  renderTasks();
+  $("taskForm").reset();
+  renderSectionTasks();
+  renderHome();
 });
 
-document.getElementById('taskFilter').addEventListener('change', renderTasks);
-
-function makeTaskElement(task) {
-  const row = document.createElement('div');
-  row.className = 'task' + (task.completed ? ' completed' : '');
-
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.checked = task.completed;
-  checkbox.setAttribute('aria-label', 'Mark task complete');
-
-  checkbox.addEventListener('change', () => {
-    task.completed = checkbox.checked;
-    saveTasks();
-    renderTasks();
-  });
-
-  const info = document.createElement('div');
-  info.className = 'task-info';
-
-  const title = document.createElement('div');
-  title.className = 'task-title';
-  title.textContent = task.title;
-  info.appendChild(title);
-
-  const details = document.createElement('div');
-  details.className = 'task-details';
-
-  const parts = [
-    task.category,
-    task.subject,
-    task.date ? 'Due ' + task.date : ''
-  ];
-
-  details.textContent = parts.filter(Boolean).join(' · ');
-  info.appendChild(details);
-
-  if (task.notes) {
-    const notes = document.createElement('div');
-    notes.className = 'task-details';
-    notes.textContent = task.notes;
-    info.appendChild(notes);
-  }
-
-  const del = document.createElement('button');
-  del.className = 'delete';
-  del.textContent = '×';
-  del.setAttribute('aria-label', 'Delete task');
-
-  del.addEventListener('click', () => {
-    if (confirm('Delete this task?')) {
-      tasks = tasks.filter(item => item.id !== task.id);
-      saveTasks();
-      renderTasks();
-    }
-  });
-
-  row.append(checkbox, info, del);
-  return row;
+function dateText(date) {
+  if (!date) return "No due date";
+  const d = new Date(date + "T12:00:00");
+  return d.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
 }
 
-function renderList(container, items, emptyMessage) {
+function dateOrder(task) {
+  return task.date || "9999-12-31";
+}
+
+function taskCard(task) {
+  const article = document.createElement("article");
+  article.className = "task" + (task.completed ? " completed" : "");
+
+  const top = document.createElement("div");
+  top.className = "task-top";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.className = "task-check";
+  checkbox.checked = !!task.completed;
+  checkbox.setAttribute("aria-label", "Mark " + task.title + " complete");
+  checkbox.addEventListener("change", () => {
+    task.completed = checkbox.checked;
+    saveTasks();
+    renderSectionTasks();
+    renderHome();
+  });
+
+  const content = document.createElement("div");
+  content.className = "task-content";
+
+  const title = document.createElement("div");
+  title.className = "task-title";
+  title.textContent = task.title;
+  content.appendChild(title);
+
+  const meta = document.createElement("div");
+  meta.className = "task-meta";
+
+  [task.category, dateText(task.date), task.className].filter(Boolean).forEach(value => {
+    const pill = document.createElement("span");
+    pill.className = "pill";
+    pill.textContent = value;
+    meta.appendChild(pill);
+  });
+  content.appendChild(meta);
+
+  if (task.notes) {
+    const notes = document.createElement("p");
+    notes.className = "task-notes";
+    notes.textContent = task.notes;
+    content.appendChild(notes);
+  }
+
+  top.append(checkbox, content);
+  article.appendChild(top);
+
+  const actions = document.createElement("div");
+  actions.className = "task-actions";
+  const del = document.createElement("button");
+  del.className = "delete";
+  del.type = "button";
+  del.textContent = "Delete task";
+  del.addEventListener("click", () => {
+    if (confirm("Delete this task?")) {
+      tasks = tasks.filter(t => t.id !== task.id);
+      saveTasks();
+      renderSectionTasks();
+      renderHome();
+    }
+  });
+  actions.appendChild(del);
+  article.appendChild(actions);
+  return article;
+}
+
+function renderSectionTasks() {
+  const container = $("sectionTasks");
   container.replaceChildren();
 
-  if (!items.length) {
-    const empty = document.createElement('div');
-    empty.className = 'empty';
-    empty.textContent = emptyMessage;
+  let list = tasks.filter(task => {
+    if (currentPage === "Things Due") return true;
+    return task.category === currentPage;
+  });
+
+  const filter = $("taskFilter").value;
+  if (filter === "active") list = list.filter(t => !t.completed);
+  if (filter === "completed") list = list.filter(t => t.completed);
+  list.sort((a, b) => dateOrder(a).localeCompare(dateOrder(b)));
+
+  if (!list.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = filter === "completed"
+      ? "No completed tasks here yet. You've got this! ♡"
+      : "Nothing here yet. Add your first task! ✧";
     container.appendChild(empty);
     return;
   }
 
-  items.forEach(task => {
-    container.appendChild(makeTaskElement(task));
-  });
+  list.forEach(task => container.appendChild(taskCard(task)));
 }
 
-function renderTasks() {
-  const filter = document.getElementById('taskFilter').value;
+function renderHome() {
+  const completed = tasks.filter(t => t.completed).length;
+  $("totalCount").textContent = tasks.length;
+  $("remainingCount").textContent = tasks.length - completed;
+  $("completedCount").textContent = completed;
 
-  const filtered = tasks
-    .filter(task => currentPage === 'Home' || task.category === currentPage)
-    .filter(task =>
-      filter === 'all' ||
-      (filter === 'active' && !task.completed) ||
-      (filter === 'completed' && task.completed)
-    );
-
-  if (currentPage !== 'Home') {
-    renderList(
-      document.getElementById('taskList'),
-      filtered,
-      'Nothing here yet! Add your first task above. ♡'
-    );
-  }
+  const container = $("upcomingTasks");
+  container.replaceChildren();
 
   const upcoming = tasks
-    .filter(task => !task.completed)
-    .sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999'))
+    .filter(t => !t.completed)
+    .sort((a, b) => dateOrder(a).localeCompare(dateOrder(b)))
     .slice(0, 5);
 
-  renderList(
-    document.getElementById('upcoming'),
-    upcoming,
-    'Your planner is all clear! Add a task to get started. ♡'
-  );
-
-  const ids = {
-    'Homework': 'homeworkCount',
-    'Tests': 'testsCount',
-    'Projects': 'projectsCount',
-    'Clubs': 'clubsCount',
-    'Things Due': 'thingsCount',
-    'Make-Up Tests': 'makeupCount'
-  };
-
-  categories.forEach(category => {
-    const count = tasks.filter(
-      task => task.category === category && !task.completed
-    ).length;
-
-    document.getElementById(ids[category]).textContent =
-      count + (count === 1 ? ' unfinished task' : ' unfinished tasks');
-  });
+  if (!upcoming.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "Your space is ready! Add a task to get started. ♡";
+    container.appendChild(empty);
+  } else {
+    upcoming.forEach(task => container.appendChild(taskCard(task)));
+  }
 }
 
-let savedTheme = 'pink';
-
-try {
-  savedTheme = localStorage.getItem('bibiPlansTheme') || 'pink';
-} catch (error) {}
-
-setTheme(savedTheme);
-renderTasks();
+renderHome();
 </script>
 </body>
 </html>
+
