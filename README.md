@@ -3,7 +3,7 @@ bibiplanner.vercel.app
 
 **Our Creators**
 Kiaan Daxini
-Akhshara Kohir
+Akshara Kohir
 
 
 # 📚 My School Planner
